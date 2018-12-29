@@ -1,0 +1,64 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}"/>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <style type="text/css">
+        .content .register{
+            float:left;
+            width:400px;
+            height:450px;
+            margin-top:50px;
+            margin-left:80px;
+            padding-bottom:20px;
+        }
+
+        .picture{
+            float:left;
+        }
+
+        .submit{
+            width:150px;
+            height:30px;
+            margin-left:10px;
+        }
+
+        .reg{
+            margin-left:50px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="header">
+    <img th:src="@{/picture/logo.png}">
+    <hr>
+</div>
+<div class="content">
+    <div class="picture">
+        <img th:src="@{/picture/picture.PNG}">
+    </div>
+    <div class="register">
+        <h2 class="reg">注册</h2>
+        <form name="frm">
+            <input type="text" name="username" id="username"  placeholder="请输入昵称"></br></br>
+            <input type="text" name="phone" id="phone"  placeholder="请输入手机号"></br></br>
+            <input type="text"  name="code" id="code" placeholder="短信验证码">
+            <button type="button" id="rcbtn" >获取验证码</button><br>
+            <div id="showCode"></div><br>
+            <input type="password" name="password" id="password"  placeholder="请输入密码"></br></br>
+            <div class="checkbox">
+                <label> <input type="checkbox" name="checkbox">我已阅读并同意<a href="https://privacy.qq.com/">《用户注册协议》</a><br><br>
+                </label>
+            </div>
+        </form>
+        <button class="submit" onclick="submitfn()">注册</button><br><br>
+        完成注册可获得500积分
+    </div>
+</div>
+</body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/js/register.js"></script>
+</html>

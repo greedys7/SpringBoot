@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.springbootdemo.dao.UserDAO" >
+    <resultMap type="User" id="userResultMap" >
+        <id property="u_id" column="U_ID"/>
+        <result property="username" column="USERNAME"/>
+        <result property="user_phone" column="USER_PHONE"/>
+        <result property="user_pwd" column="USER_PWD"/>
+    </resultMap>
+    <insert id="save" parameterType="User">
+        INSERT INTO USER
+        VALUES
+               (null,#{username},#{user_phone},#{user_pwd});
+    </insert>
+
+    <select id="findByPhone"  resultMap="userResultMap" parameterType="String">
+        SELECT
+               USERNAME,
+               USER_PHONE,
+               USER_PWD
+        FROM USER
+        WHERE
+              USER_PHONE = #{phone};
+
+    </select>
+</mapper>

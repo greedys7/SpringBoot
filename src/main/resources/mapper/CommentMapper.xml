@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.springbootdemo.dao.CommentDAO">
+    <resultMap type="Comment" id="commentResultMap" >
+        <id property="c_id" column="C_ID"/>
+        <result property="c_content" column="C_CONTENT"/>
+        <result property="c_author" column="C_AUTHOR"/>
+        <result property="c_time" column="C_TIME"/>
+        <result property="a_id" column="A_ID"/>
+    </resultMap>
+
+    <select id="findComment" resultMap="commentResultMap" parameterType="Integer">
+        SELECT
+               C_AUTHOR,
+               C_CONTENT,
+               C_TIME
+        FROM
+            COMMENT
+        WHERE
+            A_ID=#{id}
+    </select>
+
+    <select id="findCount" resultType="Integer" parameterType="Integer">
+        SELECT
+            COUNT(A_ID)
+        FROM
+            COMMENT
+        WHERE
+            A_ID=#{id}
+    </select>
+
+    <select id="findLastTime" resultType="Date" parameterType="Integer">
+        SELECT
+                 C_TIME
+        FROM
+            COMMENT
+        WHERE
+            A_ID = #{id}
+        GROUP BY
+            A_ID
+        ORDER BY
+            C_TIME
+        DESC
+        LIMIT 0,1;
+    </select>
+
+
+    <insert id="save" parameterType="Comment">
+        INSERT INTO COMMENT
+        VALUES
+            (null,#{c_content},#{c_author},#{c_time},#{a_id});
+    </insert>
+
+
+</mapper>

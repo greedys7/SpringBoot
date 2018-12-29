@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.springbootdemo.dao.U_RDAO">
+    <resultMap type="U_R" id="U_RResultMap" >
+        <id property="u_r_id" column="U_R_ID"/>
+        <result property="u_id" column="U_ID"/>
+        <result property="r_id" column="R_ID"/>
+        <result property="username" column="USERNAME"/>
+        <result property="r_name" column="ROLE_NAME"/>
+    </resultMap>
+
+    <select id="findRole" resultMap="U_RResultMap">
+        SELECT
+            u.USERNAME,r.ROLE_NAME
+        FROM
+            USER u
+                JOIN
+                U_R ur
+                ON
+                    u.U_ID = ur.U_ID
+                JOIN
+                ROLE r
+                ON
+                    ur.R_ID = r.R_ID
+    </select>
+
+    <update id="updateRole"  parameterType="U_R">
+        UPDATE
+              ROLE r
+        JOIN
+              U_R ur
+        ON
+              r.R_ID = ur.R_ID
+        JOIN
+              USER u
+        ON
+              ur.U_ID = u.U_ID
+        SET
+              r.ROLE_NAME = #{r_name}
+        WHERE
+              u.USERNAME = #{username};
+    </update>
+
+    <select id="findByUsername" resultType="U_R" parameterType="String">
+        SELECT
+            r.ROLE_NAME
+        FROM
+            USER u
+                JOIN
+                U_R ur
+                ON
+                    u.U_ID = ur.U_ID
+                JOIN
+                ROLE r
+                ON
+                    ur.R_ID = r.R_ID
+        WHERE
+             USERNAME = #{u.USERNAME}
+    </select>
+
+</mapper>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>文章列表</title>
+    <link rel="stylesheet"
+          href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+</head>
+<body>
+
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">联蔚科技内部论坛</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#">文章列表</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/article/toMyArticleList/}">我的文章</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/article/toPublishHtml/}">发表文章</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li th:text="${session.user}">当前用户：</li>
+        </ul>
+
+    </div>
+</nav>
+    <table class="table table-striped" >
+        <tr align="center">
+            <td><strong>序号</strong></td>
+            <td><strong>标题</strong></td>
+            <td><strong>作者</strong></td>
+            <td><strong>发表日期</strong></td>
+            <td><strong>评论数</strong></td>
+            <td><strong>最后评论时间</strong></td>
+            <td><strong>操作</strong></td>
+        </tr>
+       <tr th:each="al:${alist}" align="center">
+            <td id="a_id" th:text="${al.a_id}"></td>
+            <td th:text="${al.a_title}"></td>
+            <td th:text="${al.a_author}"></td>
+            <td th:text="${al.a_time}"></td>
+            <td th:text="${commentService.findCount(al.a_id)}"></td>
+            <td th:text="${commentService.findLastTime(al.a_id)}"></td>
+           <td>
+               <a th:href="@{/article/toContent(id=${al.a_id})}">查看</a>
+           </td>
+        </tr>
+    </table>
+</body>
+</html>

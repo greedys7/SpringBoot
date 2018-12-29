@@ -1,0 +1,54 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <style type="text/css">
+        .content .login1{
+            float:left;
+            width:400px;
+            height:450px;
+            margin-top:50px;
+            margin-left:80px;
+            padding-bottom:20px;
+        }
+
+        .picture{
+            float:left;
+        }
+
+        .submit{
+            width:150px;
+            height:30px;
+            margin-left:70px;
+        }
+
+        .login{
+            margin-left:120px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <img th:src="@{/picture/logo.png}">
+    <hr>
+</div>
+<div class="content">
+    <div class="picture">
+        <img th:src="@{/picture/picture.PNG}">
+    </div>
+    <div class="login1">
+        <h2 class="login">登录</h2>
+        <form >
+            用户名：<input name="phone" type="text" id="phone" /><br><br>
+            密&nbsp;&nbsp;&nbsp;码：<input name="password" id="password" type="password" /><br><br>
+            <a href="../user/toregister">快速注册</a>&nbsp;&nbsp;&nbsp;
+            <br><br>
+        </form>
+        <button class="submit" onclick="login()">登录</button>
+    </div>
+</div>
+</body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+</html>

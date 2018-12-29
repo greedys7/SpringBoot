@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.springbootdemo.dao.ArticleDAO">
+    <resultMap type="Article" id="articleResultMap" >
+        <id property="a_id" column="A_ID"/>
+        <result property="a_title" column="A_TITLE"/>
+        <result property="a_content" column="A_CONTENT"/>
+        <result property="a_time" column="A_TIME"/>
+        <result property="a_author" column="A_AUTHOR"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="articleResultMap">
+    SELECT
+        a.A_ID,
+        a.A_TITLE,
+        a.A_CONTENT,
+        a.A_TIME,
+        a.A_AUTHOR
+    FROM
+         ARTICLE a
+    JOIN
+           COMMENT c
+    ON
+          a.A_ID=c.A_ID
+    GROUP BY
+          a.A_TITLE
+    ORDER BY
+          c.C_TIME
+    DESC
+</select>
+
+    <select id="findDetail" resultMap="articleResultMap" parameterType="Integer">
+        SELECT
+            A_ID,
+            A_TITLE,
+            A_CONTENT,
+            A_TIME
+        FROM
+            ARTICLE
+        WHERE
+            A_ID = #{id}
+    </select>
+
+    <update id="deleteArticle" parameterType="Integer">
+        DELETE FROM
+                    ARTICLE
+        WHERE
+              A_ID = #{id};
+    </update>
+
+    <select id="findByAuthor" resultMap="articleResultMap" parameterType="String">
+        SELECT
+            A_ID,
+            A_TITLE,
+            A_CONTENT,
+            A_TIME,
+            A_AUTHOR
+        FROM
+            ARTICLE
+        WHERE
+            A_AUTHOR = #{username};
+    </select>
+
+    <update id="updateArticle" parameterType="Article">
+        UPDATE
+            Article
+        SET
+            A_TITLE=#{a_title},A_CONTENT=#{a_content}
+        WHERE
+            A_ID=#{a_id};
+    </update>
+
+    <insert id="saveArticle" parameterType="Article">
+        INSERT INTO ARTICLE
+        VALUES
+            (null ,#{a_title},#{a_content},#{a_author},#{a_time});
+    </insert>
+
+</mapper>

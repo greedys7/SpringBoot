@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.springbootdemo.dao.R_PDAO">
+    <resultMap type="R_P" id="R_PResultMap" >
+        <id property="r_p_id" column="U_R_ID"/>
+        <result property="r_id" column="U_ID"/>
+        <result property="p_id" column="R_ID"/>
+        <result property="permission" column="PERMISSION"/>
+        <result property="r_name" column="ROLE_NAME"/>
+    </resultMap>
+
+    <select id="findPermission" resultMap="R_PResultMap">
+        SELECT
+            r.R_ID,r.ROLE_NAME,group_concat(p.PERMISSION Separator ',') as PERMISSION
+        FROM
+            ROLE r
+                JOIN
+                R_P rp
+                ON
+                    r.R_ID = rp.R_ID
+                JOIN
+                POWER p
+                ON
+                    rp.P_ID = p.P_ID
+        GROUP BY
+            r.ROLE_NAME
+    </select>
+
+    <insert id="add" parameterType="R_P">
+        INSERT INTO
+            R_P
+        VALUES
+            (null,#{r_id},#{p_id});
+    </insert>
+
+</mapper>

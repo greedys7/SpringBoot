@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>文章列表</title>
+    <link rel="stylesheet"
+          href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+</head>
+<body>
+
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">联蔚科技内部论坛后台管理</a>
+
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#">角色管理</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/management/PowerList/}">权限管理</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/management/tolist/}">文章管理</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li th:text="${session.user}">欢迎您！尊敬的管理员：</li>
+        </ul>
+
+    </div>
+</nav>
+<table class="table table-striped" >
+    <tr align="center">
+        <td><strong>用户名</strong></td>
+        <td><strong>角色</strong></td>
+        <td><strong>分配角色</strong></td>
+        <td><strong>操作</strong></td>
+    </tr>
+    <tr th:each="rl:${rlist}" align="center">
+        <td id="username"  th:text="${rl.username}"></td>
+        <td th:text="${rl.r_name}"></td>
+        <td>
+            <form>
+                <select id="select" style="display: inline-block;width: 100px;height: 30px;">
+                    <option value="普通会员">普通会员</option>
+                    <option value="超级会员">超级会员</option>
+                    <option value="管理员">管理员</option>
+                </select>
+            </form>
+        </td>
+        <td><button onclick="update()">确认修改</button></td>
+    </tr>
+    <div>
+
+    </div>
+</table>
+</body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/js/update_role.js"></script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>修改文章</title>
+    <link rel="stylesheet"
+          href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"
+          href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/message.css}"/>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+</head>
+<body>
+
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">联蔚科技内部论坛</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/article/tolist/}">文章列表</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/article/toMyArticleList/}">我的文章</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/article/toPublishHtml/}">发表文章</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li th:text="${session.user}">当前用户：</li>
+        </ul>
+    </div>
+</nav>
+        <div>
+            <input id="a_id" th:value="${articleService.a_id}" type="hidden">
+            文章标题：<input id="a_title" th:value="${articleService.a_title}">
+            文章正文：<textarea id="a_content" th:text="${articleService.a_content}" th:rows="50" th:cols="50"></textarea>
+            发表时间：<input id="a_time" th:value="${articleService.a_time}">
+        </div>
+<div>
+    <button onclick="save()">修改</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a th:href="@{/article/toMyArticleList/}"><button>取消</button></a>
+</div>
+</body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/js/update_article.js"></script>
+</html>

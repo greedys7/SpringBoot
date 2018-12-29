@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>文章详情</title>
+    <link rel="stylesheet"
+          href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"
+          href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/message.css}"/>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+</head>
+<body>
+
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">联蔚科技内部论坛</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/article/tolist/}">文章列表</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/article/toMyArticleList/}">我的文章</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/article/toPublishHtml/}">发表文章</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li th:text="${session.user}">当前用户：</li>
+        </ul>
+    </div>
+</nav>
+<div class="content">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="messagetitle" th:text="${articleService.a_title}"></div>
+            <div class="messagedate" th:text="${articleService.a_time}"></div>
+            <div class="messagecontent" th:text="${articleService.a_content}"></div>
+        </div>
+    </div>
+</div>
+<h5 th:align="center">文章评论</h5>
+<div th:each="c:${comment}" align="center">
+    <span th:text="${c.c_author}"></span>:
+    <span th:text="${c.c_content}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+    <span th:text="${c.c_time}"></span>
+</div>
+</br></br>
+<hr></br>
+<form>
+    <input id="a_id" type="hidden" th:value="${articleService.a_id}">
+    <label style="vertical-align: top">发表你的评论</label>
+    <textarea id="c_content" th:rows="100" th:cols="50"></textarea>
+</form>
+<button onclick="saveComment()">提交</button>
+</body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/js/context.js"></script>
+</html>

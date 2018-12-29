@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>文章列表</title>
+    <link rel="stylesheet"
+          href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+</head>
+<body>
+
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">联蔚科技内部论坛后台管理</a>
+
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/management/RoleList/}">角色管理</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#">权限管理</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/management/tolist/}">文章管理</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li th:text="${session.user}"></li>
+        </ul>
+
+    </div>
+</nav>
+<table class="table table-striped">
+    <tr align="center">
+        <td><strong>角色</strong></td>
+        <td><strong>权限</strong></td>
+        <td><strong>分配权限</strong></td>
+        <td><strong>操作</strong></td>
+    </tr>
+    <tr th:each="pl:${plist}" align="center">
+        <td th:text="${pl.r_name}"></td>
+        <td th:text="${pl.permission}"></td>
+        <td>
+            <form>
+                <select id="select" style="display: inline-block;width: 100px;height: 30px;">
+                    <option value="1">查看</option>
+                    <option value="2">发布</option>
+                    <option value="3">删除</option>
+                    <option value="4">修改</option>
+
+                </select>
+            </form>
+        </td>
+        <td><button onclick="add()">添加</button>
+           <!-- <button onclick="todelete()">移除</button>-->
+        </td>
+    </tr>
+
+</table>
+</body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/js/updata_permission.js"></script>
+</html>

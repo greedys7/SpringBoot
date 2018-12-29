@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>联蔚科技内部论坛</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+</head>
+<body>
+
+<<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">联蔚科技内部论坛</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/user/toregister/}">注册</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/user/tologin/}">登录</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br><br>
+        <h1 class="header center orange-text">联蔚论坛</h1>
+        <div class="row center">
+            <h5 class="header col s12 light">致力于公司内部员工分享生活乐趣，技术学习交流</h5>
+        </div>
+        <br><br>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><i class="material-icons">Joy of living</i></h2>
+                    <h5 class="center">生活乐趣</h5>
+
+                    <p class="light">我们做最繁重的工作为你提供一个可以分享自己在生活中的乐趣，和公司同事们在闲暇时间可以有一个放松的平台，为同事们提供一个像家一样的体验。</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><i class="material-icons">Technology sharing</i></h2>
+                    <h5 class="center">技术分享</h5>
+
+                    <p class="light">公司的技术人员可以在论坛内分享自己关于一些技术的认识和观点，方便技术人员的技术学习和交流。我们创建一个平台，让更多的人提供更广阔的思想。</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><i class="material-icons">Exchange of learning</i></h2>
+                    <h5 class="center">学习交流</h5>
+
+                    <p class="light">我们提供的平台不仅可以与同事们一起轻松快乐，还可以与其他同事一起学习新的技术和知识，相互交流，相互促进。我们也总是开放的反馈，并可以回答任何问题。</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br><br>
+
+    <div class="section">
+
+    </div>
+</div>
+
+<footer class="page-footer orange">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">我们的团队</h5>
+                <p class="grey-text text-lighten-4">我们是一个在这个项目上工作的大学生团队，就像是我们的全职工作。任何金额将有助于支持和继续在这个项目上的发展，并不胜感激。</p>
+
+
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">后台管理</h5>
+                <ul>
+                    <li><a class="white-text" th:href="@{/management/Login/}">后台管理系统入口</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+</body>
+</html>
